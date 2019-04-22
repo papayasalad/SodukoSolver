@@ -23,6 +23,7 @@ public class Board {
             }
             res.append("\n");
         }
+        res.deleteCharAt(res.length() - 1);
         return res.toString();
     }
 }
