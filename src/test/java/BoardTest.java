@@ -32,6 +32,12 @@ public class BoardTest {
     }
 
     @Test
+    public void testContainLetter() throws IOException {
+        Board board = new Board("src/test/resources/invalidDataLetter.sdk");
+        assertEquals(false, board.isValid());
+    }
+
+    @Test
     public void testEmptyInput() throws IOException {
         Board board = new Board("src/main/resources/empty_puzzle.sdk");
         assertEquals(false, board.isValid());

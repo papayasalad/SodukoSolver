@@ -32,7 +32,6 @@ public class Board {
     }
 
     public boolean isValid() {
-
         return this.boardSizeValid() && this.cellsValid() && this.rowsValid() && this.colsValid() && this.gridsValid();
     }
 
