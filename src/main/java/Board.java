@@ -1,4 +1,5 @@
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -31,17 +32,34 @@ public class Board {
     }
 
     public boolean isValid() {
-        return this.cellsValid() && this.rowsValid() && this.colsValid() && this.gridsValid();
+
+        return this.boardSizeValid() && this.cellsValid() && this.rowsValid() && this.colsValid() && this.gridsValid();
     }
 
     public boolean isSolved() {
         return this.isFilled() && this.isValid();
     }
 
+    public boolean boardSizeValid() {
+        int boardSize = 9;
+        if (board.size() != boardSize) {
+            return false;
+        } else {
+            for (int i = 0; i < boardSize; i++) {
+                if (board.get(i).size() != boardSize) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public boolean cellsValid() {
         for (int i = 0; i < board.size(); i++) {
             for (int j = 0; j < board.get(i).size(); j++) {
-                if (!(board.get(i).get(j) >= 0 && board.get(i).get(j) <= 9 || board.get(i).get(j) == null)) {
+                if (board.get(i).get(j) == null) {
+                    continue;
+                } else if (board.get(i).get(j) < 1 || board.get(i).get(j) > 9) {
                     return false;
                 }
             }
