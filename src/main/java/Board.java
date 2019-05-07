@@ -1,16 +1,23 @@
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Board {
     private List<List<Integer>> board;
 
     public Board(String filePath) throws FileNotFoundException {
         BoardReader boardReader = BoardReaderFactory.getBoardReader(filePath);
-        board = boardReader.readFile(filePath);
+        this.board = boardReader.readFile(filePath);
+    }
+
+    public Board(List<List<Integer>> board) {
+        this.board = new ArrayList<>();
+        for (List<Integer> row : board) {
+            List<Integer> line = new ArrayList<>();
+            for (Integer cell : row) {
+                line.add(cell);
+            }
+            this.board.add(line);
+        }
     }
 
     public List<List<Integer>> getBoard() { return board; }
@@ -138,5 +145,30 @@ public class Board {
             }
         }
         return true;
+    }
+
+
+
+    protected ArrayList<Board> getNeighbors() {
+        ArrayList<Board> options = new ArrayList<>();
+        for (int i = 0; i < board.size(); i++) {
+            for (int j = 0; j < board.get(i).size(); j++) {
+                if (board.get(i).get(j) == null) {
+                    for (int k = 1; k <= 9; k++) {
+                        Board boardCopy = new Board(board);
+                        boardCopy.fillACell(i, j, k);
+                        if (boardCopy.isValid()) {
+                            options.add(boardCopy);
+                        }
+                    }
+                }
+            }
+        }
+        return options;
+    }
+
+
+    public void fillACell(int row, int col, int val) {
+        board.get(row).set(col, val);
     }
 }

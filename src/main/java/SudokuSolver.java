@@ -7,16 +7,31 @@ public class SudokuSolver {
         this.board = new Board(filePath);
     }
 
+    private Board solve() {
+        return solveHelper(this.board);
+    }
+
+    private static Board solveHelper(Board board) {
+        if (board.isSolved()) {
+            return board;
+        }
+
+        for (Board option : board.getNeighbors()) {
+            if (solveHelper(option) != null) {
+                return solveHelper(option);
+            }
+        }
+        return null;
+    }
+
     public static void main(String[] args) throws FileNotFoundException {
 
-//        SudokuSolver sdkSolver = new SudokuSolver("src/main/resources/puzzle.sdk");
-        SudokuSolver sdkSolver = new SudokuSolver("src/test/resources/invalidDataLetter.sdk");
+        SudokuSolver sdkSolver = new SudokuSolver("src/main/resources/puzzle.sdk");
         System.out.println(sdkSolver.board);
 
-        System.out.println(" \n------ Here is a line separating two Sudoku Boards ------\n ");
+        System.out.println(" \n------ Below is the solution of above Sudoku Boards ------\n ");
 
-        SudokuSolver ssSolver = new SudokuSolver("src/main/resources/puzzle.ss");
-        System.out.println(ssSolver.board);
-
+        Board solution = sdkSolver.solve();
+        System.out.println(solution);
     }
 }
