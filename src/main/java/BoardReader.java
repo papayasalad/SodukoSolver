@@ -6,4 +6,3 @@ public interface BoardReader {
     List<List<Integer>> readFile(String filePath) throws FileNotFoundException;
 
 }
-

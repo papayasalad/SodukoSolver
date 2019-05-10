@@ -20,7 +20,7 @@ public class SdkReader implements BoardReader {
             for (char element : data) {
                 if (Character.isDigit(element)){
                     line.add(Character.getNumericValue(element));
-                } else {
+                } else if (element == '.'){
                     line.add(null);
                 }
             }
