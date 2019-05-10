@@ -1,24 +1,45 @@
 import java.io.FileNotFoundException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class SudokuSolver {
     private Board board;
 
-    private SudokuSolver(String filePath) throws FileNotFoundException {
+    SudokuSolver(String filePath) throws FileNotFoundException {
         this.board = new Board(filePath);
     }
 
-    private Board solve() {
-        return solveHelper(this.board);
+    SudokuSolver(Board board) {
+        this.board = board;
     }
 
-    private static Board solveHelper(Board board) {
+    private static Set<Board> boardList = new HashSet<Board>();
+
+    private static boolean duplicates(Set<Board> boardList, Board board) {
+        for (Board recordedBoard: boardList) {
+            if (board.equal(recordedBoard)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Board solve() {
+        return solveHelper(this.board, boardList);
+    }
+
+    private static Board solveHelper(Board board, Set<Board> boardList) {
         if (board.isSolved()) {
             return board;
         }
 
         for (Board option : board.getNeighbors()) {
-            if (solveHelper(option) != null) {
-                return solveHelper(option);
+            if (!duplicates(boardList, option)) {
+                boardList.add(option);
+                Board result = solveHelper(option, boardList);
+                if (result != null) {
+                    return result;
+                }
             }
         }
         return null;
@@ -33,5 +54,6 @@ public class SudokuSolver {
 
         Board solution = sdkSolver.solve();
         System.out.println(solution);
+
     }
 }
