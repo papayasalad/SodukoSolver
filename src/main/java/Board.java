@@ -147,8 +147,9 @@ public class Board {
         return true;
     }
 
-
-
+    //I put getNeighbors() inside Board class because I won't be able to directly access the board
+    //if I put this method in SodokuSolver class. Here I can easily get the board size without having to
+    //calling getBoard() first.
     protected ArrayList<Board> getNeighbors() {
         ArrayList<Board> options = new ArrayList<>();
         for (int i = 0; i < board.size(); i++) {

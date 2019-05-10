@@ -2,18 +2,22 @@ import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
 
+// This class includes a method solve() that returns a board solution. I tend to favor this coding style because
+// it not only allows us to print out the original board but also details in the middle if we want to. It is easier
+// to debug compared to the other class Solver2 which creates a member variable of solution.
+
 public class SudokuSolver {
     private Board board;
 
-    SudokuSolver(String filePath) throws FileNotFoundException {
+    public SudokuSolver(String filePath) throws FileNotFoundException {
         this.board = new Board(filePath);
     }
 
-    SudokuSolver(Board board) {
+    public SudokuSolver(Board board) {
         this.board = board;
     }
 
-    private static Set<Board> boardList = new HashSet<Board>();
+    private static Set<Board> boardList = new HashSet<>();
 
     private static boolean duplicates(Set<Board> boardList, Board board) {
         for (Board recordedBoard: boardList) {
