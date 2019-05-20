@@ -168,19 +168,8 @@ public class Board {
         return options;
     }
 
-
     public void fillACell(int row, int col, int val) {
         board.get(row).set(col, val);
     }
 
-    public boolean equal(Board other) {
-        for (int i = 0; i < board.size(); i++) {
-            for (int j = 0; j < board.get(i).size(); j++) {
-                if (board.get(i).get(j) != other.getBoard().get(i).get(j)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }
