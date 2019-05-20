@@ -1,7 +1,7 @@
 import java.io.FileNotFoundException;
 import java.util.HashSet;
 import java.util.Set;
- 
+
 public class RecursiveSolver extends SudokuSolver {
 
     public RecursiveSolver(String filepath) throws FileNotFoundException {

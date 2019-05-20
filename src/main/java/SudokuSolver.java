@@ -10,4 +10,5 @@ public abstract class SudokuSolver {
     public abstract Board solve();
 
     public Board getBoard() { return this.board; }
+
 }
