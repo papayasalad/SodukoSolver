@@ -20,9 +20,9 @@ public class IterativeSolver extends SudokuSolver{
                 return element;
             } else {
                 for (Board option : element.getNeighbors()) {
-//                    if (!boardList.contains(option)) {
-//                        boardList.add(option);
-//                    }
+                    if (!boardList.contains(option)) {
+                        boardList.add(option);
+                    }
                     stack.push(option);
                 }
             }
