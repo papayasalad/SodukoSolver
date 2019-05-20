@@ -24,5 +24,5 @@ public class Main {
 Runtime of solver using depth first search is faster than the one using recursive backtracking; the more blanks the
 more obvious of runtime difference. Because in DFS, stack only pushes/pops one Board variable; while in recursive
 backtracking, the system stack has to deal with everything related to calling the function itself, therefore it is
-more costly.  
+more costly.
 */
