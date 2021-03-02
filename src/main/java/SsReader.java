@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class SsReader implements BoardReader{
 
     public List<List<Integer>> readFile(String filePath) throws FileNotFoundException {
+
         Scanner scan = new Scanner(new File(filePath));
         List<List<Integer>> board = new ArrayList<>();
 
